@@ -1,0 +1,2 @@
+$username = Read-Host "Enter user name"
+Get-ADUser $username -Properties * | Select-Object Name, Title, telephoneNumber, @{N='Extension';E={$_.ipPhone}}, employeeID, mail, @{N='Current OU';E={$_.CanonicalName}}, HomeDirectory, MemberOf | Format-List
