@@ -9,13 +9,12 @@ $Computers = Get-Content .\~ComputerList.txt
 
 ########## Test if the Computer is online ##########
 
-$OnlineComputers = New-Object System.Collections.Generic.List[System.Object]
 
-foreach ($Computer in $Computers) {
+$OnlineComputers = foreach ($Computer in $Computers) {
 
     if (test-connection $Computer -count 1 -quiet) {
         Write-Host "$Computer is Online" -ForegroundColor Black -BackgroundColor Green
-        $OnlineComputers.Add($Computer)
+        $_
     }
 
     else {
@@ -27,3 +26,5 @@ foreach ($Computer in $Computers) {
         $OfflineComputers | Export-Csv .\~Failed.csv -NoTypeInformation -Force -Append
     }
 }
+
+$OnlineComputers
