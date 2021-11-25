@@ -1,4 +1,4 @@
-Set-Location "$PSScriptRoot"
+Set-Location $PSScriptRoot
 $computers = Get-Content .\computers.txt
 $source = "C:\Files\Test\*"
 $dest = "c$\Users\Public\Desktop\Utilities\SuperF4"
