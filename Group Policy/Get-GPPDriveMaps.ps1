@@ -20,7 +20,7 @@ foreach ($Policy in $GPO) {
         DriveLabel = $drivemap.Properties.label
         DriveFilterGroup = $drivemap.Filters.FilterGroup.Name
         }
-        $Output | Export-Csv ".\List Of Group Drive Mappings.csv" -Append
+        $Output #| Export-Csv ".\List Of Group Drive Mappings.csv" -Append
         }
     }
 }

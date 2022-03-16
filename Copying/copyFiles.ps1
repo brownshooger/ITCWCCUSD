@@ -8,17 +8,18 @@ foreach ($Computer in $Computers) {
 
     try {
 
-        ((Test-Connection $Computer -Count 3 -Quiet) -eq $true)
-        Write-Host "$Computer is online" -ForegroundColor Green
-        New-Item -ItemType directory -Path "\\$Computer\$dest"
-        Copy-Item -Force $source -Destination "\\$computer\$dest" -Recurse
-
+        if (Test-Connection $Computer -Count 1 -Quiet) {
+            Write-Host "$Computer is online" -ForegroundColor Green
+            New-Item -ItemType directory -Path "\\$Computer\$dest"
+            Copy-Item -Force $source -Destination "\\$computer\$dest" -Recurse
         }
+
+    }
 
     catch {
 
         Write-Host "$Computer is offline" -ForegroundColor Red
         Add-Content -value $computer -path ".\deadPCs.txt"
 
-        }
+    }
 }
